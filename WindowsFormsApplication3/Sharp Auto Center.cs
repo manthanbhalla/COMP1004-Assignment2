@@ -19,10 +19,7 @@ namespace WindowsFormsApplication3
     // Date : 12 February, 2017	
 
 
-    // A form to calculate total sales bonus that every employee receives on the basis of
-
-    // total monlthy sales and the percentage of hours worked by the employee
-
+    // A form is used to calculate the amount due on a New or Used vehicle
 
     public partial class Form1 : Form
     {
@@ -42,9 +39,10 @@ namespace WindowsFormsApplication3
         }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This program calculates the amount due on a new or used vehicle.", "About", MessageBoxButtons.OK);
+            MessageBox.Show("This program calculates the amount due on a New or Used vehicle.", "About", MessageBoxButtons.OK);
         }
 
+        //Additional cose to be added if any extra items are needed
         void showAdditionalItems()
         {
             double AdditionalCost = 0;
@@ -87,7 +85,7 @@ namespace WindowsFormsApplication3
             textBox2.Text = String.Format("{0:C}", AdditionalCost);
         }
 
-        // When checked, call method to add and display value
+        // Call the method to add and display value
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             showAdditionalItems();
@@ -122,19 +120,18 @@ namespace WindowsFormsApplication3
             showAdditionalItems();
 
         }
+
+        // Set the color for the text to be written in the textboxes
         private void colorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Show the color dialog
             colorDialog.ShowDialog();
-
-            // If user pressed ok
 
             textBox1.ForeColor = colorDialog.Color;
             textBox2.ForeColor = colorDialog.Color;
 
         }
 
-        // Set the font style for the textboxes
+        // Set the font style for the text to be written in the textboxes
         private void fontToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fontDialog.ShowDialog();
@@ -143,27 +140,21 @@ namespace WindowsFormsApplication3
             textBox2.Font = fontDialog.Font;
         }
 
-        //-------------------------------------------------------------------------------
-        // Validate that the text in BasePriceTextBox is numeric
-        //-------------------------------------------------------------------------------       
+
+        // To validate that the text written in TradeInAllowanceTextBox is numeric       
         private void TradeInAllowanceTextBox_Validating(object sender, CancelEventArgs e)
         {
             validateNumericTextBox(textBox6, e);
         }
 
-        //-------------------------------------------------------------------------------
-        // Validate that the text in BasePriceTextBox is numeric
-        //------------------------
+        // To validate that the text written in BasePriceTextBox is numeric
         private void BasePriceTextBox_Validating(object sender, CancelEventArgs e)
         {
             validateNumericTextBox(textBox1, e);
         }
 
-
-        //-------------------------------------------------------------------------------
-        // Calculates and displays the sub total, total, and amount due in currency format.
-        // Validates that the required fields are not empty.
-        //-------------------------------------------------------------------------------       
+        // To calculate and display the sub total, total, and amount due in currency format.
+        // It should be validated that the required fields are not empty     
         private void CalculateButton1_Click(object sender, EventArgs e)
         {
             // if the textboxes are empty, notify user
@@ -196,9 +187,7 @@ namespace WindowsFormsApplication3
             }
         }
 
-        //-------------------------------------------------------------------------------
-        // Clear all textboxes and set options to default
-        //-------------------------------------------------------------------------------       
+        //All the textboxes should be cleared when clicked on Clear button and set it to default
         private void ClearButton1_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
@@ -214,27 +203,25 @@ namespace WindowsFormsApplication3
             checkBox3.Checked = false;
             checkBox4.Checked = false;
         }
-        //-------------------------------------------------------------------------------
-        // Checks if the value in the textbox is numeric, notifies the user
-        // if it is not numeric, and can't lose focus until it is either numeric or blank
-        //-------------------------------------------------------------------------------       
+        //Notify the user if the value written is numeric otherwise 
+        //throw exception to type a numeric value
         private void validateNumericTextBox(TextBox textbox, CancelEventArgs e)
         {
-            double num;
-            if (double.TryParse(textbox.Text, out num))
+            double number;
+            if (double.TryParse(textbox.Text, out number))
             {
-                // It's a number!
+
             }
             else
             {
                 MessageBox.Show("Please enter a numeric value.", "Oops!", MessageBoxButtons.OK);
             }
-                // if the textbox is blank, allow focus change
-                if (textbox.Text == "")
-                {
-                    e.Cancel = false;
-                }
+            // if the textbox is blank, allow focus change
+            if (textbox.Text == "")
+            {
+                e.Cancel = false;
             }
+        }
 
 
         // Calculate sales tax on a double value and return the result
