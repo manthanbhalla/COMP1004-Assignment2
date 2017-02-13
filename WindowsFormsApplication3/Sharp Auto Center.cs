@@ -216,7 +216,6 @@ namespace WindowsFormsApplication3
             {
                 MessageBox.Show("Please enter a numeric value.", "Oops!", MessageBoxButtons.OK);
             }
-            // if the textbox is blank, allow focus change
             if (textbox.Text == "")
             {
                 e.Cancel = false;
@@ -224,14 +223,14 @@ namespace WindowsFormsApplication3
         }
 
 
-        // Calculate sales tax on a double value and return the result
+        // The sales tax should be calculated and final result should be displayed
 
         private double calculateTaxOn(double value)
         {
             return value * 1.13;
         }
 
-        // Close the form
+        // Exit the form
         private void ExitButton1_Click(object sender, EventArgs e)
         {
             this.Close();
